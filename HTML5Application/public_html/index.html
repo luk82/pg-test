@@ -49,6 +49,7 @@
     <header>
         <h2>First PhoneGap App</h2>
     </header>
+      
     <div id="main" role="main">
         <button id="button">Display Text</button>
         <button id="clear">Clear Text</button>
@@ -89,6 +90,24 @@
         $('#clear').click(function(){
            $('#text').html(''); 
         });
+        
+        var connection = new ActiveXObject("ADODB.Connection") ;
+
+var connectionstring="Data Source=http://dialadogwash.com;Initial Catalog=dialadog_wash;User ID=dialadog_wash;Password=snowwhite12;Provider=SQLOLEDB";
+
+connection.Open(connectionstring);
+var rs = new ActiveXObject("ADODB.Recordset");
+
+rs.Open("SELECT name,postcode FROM item", connection);
+rs.MoveFirst
+while(!rs.eof)
+{
+   document.write(rs.fields(1));
+   rs.movenext;
+}
+
+rs.close;
+connection.close;
     </script>
 </body>
 </html>
