@@ -13,6 +13,7 @@
   <body>
  <div id="map" style="width: 500px; height: 400px;"></div>
       <p id="geolocation">Finding geolocation...</p>
+      <p id="test">Testing...</p>
   </body>
  
 
@@ -26,6 +27,7 @@
     //
     function onDeviceReady() {
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        
     }
 
     // onSuccess Geolocation
@@ -57,9 +59,11 @@
               'message: ' + error.message + '\n');
     }
     
-
     
-    //alert(location);  
+    var test_element = document.getElementById('test');
+    test_element.innerHTML =  position.coords.latitude + ' position : ' +  position + 'location : ' + location;
+    
+    
       
     var locations = [
       ['Bondi Beach', 52.590542, -0.754856, 4],
