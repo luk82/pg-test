@@ -31,7 +31,12 @@
 
     // onSuccess Geolocation
     //
-    
+    /*
+    var lat_long = new Array();
+            lat_long[0] = '52.4';
+        lat_long[1] = '-0.7';
+        runMap(lat_long);
+    */
     function runMap(lat_long) {
       
     var locations = [
@@ -43,7 +48,7 @@
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 8,
+      zoom: 10,
       center: new google.maps.LatLng(lat_long[0], lat_long[1]),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -84,6 +89,8 @@
         lat_long[1] = position.coords.longitude;
         
         element.innerHTML = lat_long;
+        lat_long[0] = '52';
+        lat_long[1] = '-0.7';
         runMap(lat_long);
        // return location; 
     }
