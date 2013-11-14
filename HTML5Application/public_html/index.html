@@ -48,7 +48,7 @@
         lat_long[1] = position.coords.longitude;
         
         element.innerHTML = lat_long;
-        runMap();
+        runMap(lat_long);
        // return location; 
     }
 
@@ -63,7 +63,7 @@
    // var test_element = document.getElementById('test');
    // test_element.innerHTML = 'location : ' + lat_long;
     
-    function runMap() {
+    function runMap(lat_lng) {
       
     var locations = [
       ['Bondi Beach', 52.590542, -0.754856, 4],
