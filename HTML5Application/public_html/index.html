@@ -31,39 +31,8 @@
 
     // onSuccess Geolocation
     //
-    function onSuccess(position) {
-        var element = document.getElementById('geolocation');
-        /*
-        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
-                            'Longitude: '          + position.coords.longitude             + '<br />' +
-                            'Altitude: '           + position.coords.altitude              + '<br />' +
-                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
-                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-                            'Heading: '            + position.coords.heading               + '<br />' +
-                            'Speed: '              + position.coords.speed                 + '<br />' +
-                            'Timestamp: '          + position.timestamp                    + '<br />';
-        */
-        var lat_long = new Array();
-        lat_long[0] = position.coords.latitude;
-        lat_long[1] = position.coords.longitude;
-        
-        element.innerHTML = lat_long;
-        runMap(lat_long);
-       // return location; 
-    }
-
-    // onError Callback receives a PositionError object
-    //
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
     
-    
-   // var test_element = document.getElementById('test');
-   // test_element.innerHTML = 'location : ' + lat_long;
-    
-    function runMap(lat_lng) {
+    function runMap(lat_long) {
       
     var locations = [
       ['Bondi Beach', 52.590542, -0.754856, 4],
@@ -97,5 +66,39 @@
       })(marker, i));
     }
     }
+    
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        /*
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />';
+        */
+        var lat_long = new Array();
+        lat_long[0] = position.coords.latitude;
+        lat_long[1] = position.coords.longitude;
+        
+        element.innerHTML = lat_long;
+        runMap(lat_long);
+       // return location; 
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+    
+    
+   // var test_element = document.getElementById('test');
+   // test_element.innerHTML = 'location : ' + lat_long;
+    
+
   </script>
 </html>
