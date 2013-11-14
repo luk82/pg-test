@@ -3,8 +3,22 @@
   <head>
     <title>Notification Example</title>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+     <script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
- // Wait for device API libraries to load
+    
+
+    </script>
+  </head>
+  <body>
+ <div id="map" style="width: 500px; height: 400px;"></div>
+      <p id="geolocation">Finding geolocation...</p>
+  </body>
+ 
+
+  <script type="text/javascript" charset="utf-8">
+      
+    // Wait for device API libraries to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -18,6 +32,7 @@
     //
     function onSuccess(position) {
         var element = document.getElementById('geolocation');
+        /*
         element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
                             'Altitude: '           + position.coords.altitude              + '<br />' +
@@ -26,6 +41,12 @@
                             'Heading: '            + position.coords.heading               + '<br />' +
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + position.timestamp                    + '<br />';
+        */
+       element.innerHTML = location;
+        var location = new Array();
+        location[0] = position.coords.latitude;
+        location[1] = position.coords.longitude;
+       // return location; 
     }
 
     // onError Callback receives a PositionError object
@@ -34,10 +55,41 @@
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
+    
 
-    </script>
-  </head>
-  <body>
-    <p id="geolocation">Finding geolocation...</p>
-  </body>
+    
+    alert(location);  
+      
+    var locations = [
+      ['Bondi Beach', 52.590542, -0.754856, 4],
+      ['Coogee Beach', 52.423036, -0.7259052, 5],
+      ['Cronulla Beach', 52.428249, -0.727507, 3],
+      ['Manly Beach', 52.40010128657071, -0.747820854187, 2],
+      ['Maroubra Beach', 52.450198, -0.759302, 1]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 9,
+      center: new google.maps.LatLng(52.415, -0.727),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
 </html>
