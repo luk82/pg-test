@@ -42,10 +42,11 @@
                             'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + position.timestamp                    + '<br />';
         */
-       element.innerHTML = location;
         var location = new Array();
         location[0] = position.coords.latitude;
         location[1] = position.coords.longitude;
+       // element.innerHTML = location;
+        
        // return location; 
     }
 
@@ -58,7 +59,7 @@
     
 
     
-    alert(location);  
+    //alert(location);  
       
     var locations = [
       ['Bondi Beach', 52.590542, -0.754856, 4],
